@@ -1,5 +1,5 @@
 
-**Note**
+**Notes**
 
 Summary
 1. Use simple seq2seq model, with different structure for different problems
