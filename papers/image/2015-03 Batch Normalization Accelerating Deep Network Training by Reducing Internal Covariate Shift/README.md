@@ -6,7 +6,9 @@ Summary
 1. batch normalization solves distribution changes between training batches
 2. speed up training convergence
 
-. 
+Thoughts
+1. if there are big shifts between instances/batches, gradient decent direction will change often, thus slow to converge
+2. 
 
 
 
