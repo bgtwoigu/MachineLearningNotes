@@ -1,4 +1,35 @@
 
+**Note**
+关于如何生成embedding
+
+TensorFlow tutorial:
+```sh
+deep_columns = [
+  tf.contrib.layers.embedding_column(workclass, dimension=8),
+  tf.contrib.layers.embedding_column(education, dimension=8),
+  tf.contrib.layers.embedding_column(gender, dimension=8),
+  tf.contrib.layers.embedding_column(relationship, dimension=8),
+  tf.contrib.layers.embedding_column(native_country, dimension=8),
+  tf.contrib.layers.embedding_column(occupation, dimension=8),
+  age, education_num, capital_gain, capital_loss, hours_per_week]
+```
+tflearn实现
+```sh
+        for cc, cc_size in self.categorical_columns.items():                                                                          
+            cc_input_var[cc] = tflearn.input_data(shape=[None, 1], name="%s_in" % cc,  dtype=tf.int32)                                
+            # embedding layers only work on CPU!  No GPU implementation in tensorflow, yet!                                           
+            cc_embed_var[cc] = tflearn.layers.embedding_ops.embedding(cc_input_var[cc],    cc_size,  8, name="deep_%s_embed" % cc)    
+            if self.verbose:                                                                                                          
+                print ("    %s_embed = %s" % (cc, cc_embed_var[cc]))                                                                  
+            flat_vars.append(tf.squeeze(cc_embed_var[cc], squeeze_dims=[1], name="%s_squeeze" % cc))  
+         
+```          
+
+
+如果输入特征的取值是一个离散值，输入到神经网络时相当于输入一个向量，这个从代码里看还是比较清楚的。
+但是如果特征的取值是多个离散值，比如user_installed_apps，一般用户都是有很多app的，这样输入的特征就是
+[0,0,1,0,1......0,1,1,0]这样的，要是压缩到100维左右，估计得是类似full connection layer的方式了。
+
 
 **Test**
 
@@ -99,3 +130,11 @@ predictions
 
 **Reference**
 
+
+1. <a href="https://www.tensorflow.org/versions/master/tutorials/wide_and_deep/">TensorFlow Wide & Deep Learning Tutorial </a>
+
+2. <a href="http://www.jianshu.com/p/7dc588d98a94">（翻译）TensorFlow 广度和深度学习教程</a>
+
+3. <a href="http://stackoverflow.com/questions/38808643/tf-contrib-layers-embedding-column-from-tensor-flow">tf.contrib.layers.embedding_column from tensor flow</a>
+
+4. <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/contrib/layers/python/layers/feature_column.py">Feature Embedding的TF实现</a>
