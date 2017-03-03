@@ -79,6 +79,7 @@ cmvn.scp  feats.scp  spk2utt  split1  text  utt2spk  wav.scp
 [root@localhost lang]# ls
 L_disambig.fst  L.fst  oov.int  oov.txt  phones  phones.txt  topo  words.txt
 ```
+
 * utt2spk - 声音文件到说话人的映射
 * spk2utt - 说话人到声音文件的映射
 * text - 标注发音内容，第一列是发音编号
@@ -118,6 +119,26 @@ Kaldi的工作核心是解码网络，整个解码网络都是围绕HCLG的图�
 * H包含HMM的定义；输出符表示上下文相关的音素，输入是transitions-ids(转移id)，transitions-ids是编码pdf-id或者其他信息(自转或向后转)，具体看( Integer identifiers used by TransitionModel)
 
 **解码**
+
+#在线解码及识别
+
+kaldi里有一些旧版本的代码在src/online和src/onlinebin里，可以为在线解码提供一些示范性的工具。
+但是同时kaldi还提供了另外一些的代码在src/online2和src/onlinebin下，根据官方文档，Kaldi希望为用户
+提供一些构建在线解码用的库，而不是提供完整的工具。Kaldi希望用户自己根据这些库区构建自己的工具。
+
+缺省编译时并不会编译src/online和src/onlinebin里的代码，我们可以手工编译。
+```sh
+cd tools
+sh install_portaudio.sh
+
+cd ../src/online
+make
+
+cd ../onlinebin
+make
+```
+编译后再src/online下产生一个文件libkaldi-online.so。在onlinebin里编译时需要用到这个so文件，同时会编译出一些可执行文件。
+
 
 #Reference
 
