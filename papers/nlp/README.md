@@ -21,13 +21,38 @@
 
 ###上海林原信息科技有限公司
 
-<a href="https://github.com/hankcs/HanLP">Github项目 - HanNLP</a>
+<a href="https://github.com/hankcs/HanLP">Github项目 - HanLP</a>
+
+###中国自然语言处理开源组织
+
+<a href="https://github.com/NLPchina>Github项目</a>
+
 
 ##算法
 
+
 ###分词
+
+1. CRF - 对未登录词和歧义词识别比较好，训练和使用都比较慢
+CRF++是用的比较多的CRF库，<a href="http://www.hankcs.com/ml/crf-code-analysis.html">CRF++代码分析</a>介绍了实现，
+CRF++的代码在<a href="https://sourceforge.net/projects/crfpp/">sourceforge</a>和
+<a href="https://github.com/taku910/crfpp">Github</a>上，实现使用了L-BFGS，和前面的分析略有差别。
+2. Dictionary - 速度快，需要手工建立词典
+3. HMM
+4. HMM
 ###词性标注
+
+1. CRF
+
+###命名实体识别
+
+1. CRF
+
+###关键词提取 
 ###语法分析
+###意图分析
+###句子生成
+
 ###机器翻译
 ###摘要
 ###知识图谱
