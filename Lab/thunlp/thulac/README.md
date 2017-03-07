@@ -46,6 +46,7 @@ java -classpath target/classes org.thunlp.thulac.main.Main -seg_only -model_dir 
 
 
 
+
 **Reference**
 
 1. <a href="https://github.com/thunlp/THULAC-Java">Thulac项目</a>
